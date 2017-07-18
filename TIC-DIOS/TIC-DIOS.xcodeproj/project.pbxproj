@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52D3FDF81F1E290C00084B45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FDF71F1E290C00084B45 /* AppDelegate.swift */; };
+		52D3FDFA1F1E290C00084B45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FDF91F1E290C00084B45 /* ViewController.swift */; };
+		52D3FDFD1F1E290C00084B45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D3FDFB1F1E290C00084B45 /* Main.storyboard */; };
+		52D3FDFF1F1E290C00084B45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D3FDFE1F1E290C00084B45 /* Assets.xcassets */; };
+		52D3FE021F1E290C00084B45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D3FE001F1E290C00084B45 /* LaunchScreen.storyboard */; };
+		52D3FE0D1F1E290C00084B45 /* TIC_DIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FE0C1F1E290C00084B45 /* TIC_DIOSTests.swift */; };
+		52D3FE181F1E290C00084B45 /* TIC_DIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FE171F1E290C00084B45 /* TIC_DIOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52D3FE091F1E290C00084B45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52D3FDEC1F1E290C00084B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52D3FDF31F1E290C00084B45;
+			remoteInfo = "TIC-DIOS";
+		};
+		52D3FE141F1E290C00084B45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52D3FDEC1F1E290C00084B45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52D3FDF31F1E290C00084B45;
+			remoteInfo = "TIC-DIOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52D3FDF41F1E290C00084B45 /* TIC-DIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TIC-DIOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D3FDF71F1E290C00084B45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		52D3FDF91F1E290C00084B45 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52D3FDFC1F1E290C00084B45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52D3FDFE1F1E290C00084B45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52D3FE011F1E290C00084B45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		52D3FE031F1E290C00084B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D3FE081F1E290C00084B45 /* TIC-DIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TIC-DIOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D3FE0C1F1E290C00084B45 /* TIC_DIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIC_DIOSTests.swift; sourceTree = "<group>"; };
+		52D3FE0E1F1E290C00084B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D3FE131F1E290C00084B45 /* TIC-DIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TIC-DIOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D3FE171F1E290C00084B45 /* TIC_DIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIC_DIOSUITests.swift; sourceTree = "<group>"; };
+		52D3FE191F1E290C00084B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52D3FDF11F1E290C00084B45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE051F1E290C00084B45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE101F1E290C00084B45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52D3FDEB1F1E290C00084B45 = {
+			isa = PBXGroup;
+			children = (
+				52D3FDF61F1E290C00084B45 /* TIC-DIOS */,
+				52D3FE0B1F1E290C00084B45 /* TIC-DIOSTests */,
+				52D3FE161F1E290C00084B45 /* TIC-DIOSUITests */,
+				52D3FDF51F1E290C00084B45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52D3FDF51F1E290C00084B45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52D3FDF41F1E290C00084B45 /* TIC-DIOS.app */,
+				52D3FE081F1E290C00084B45 /* TIC-DIOSTests.xctest */,
+				52D3FE131F1E290C00084B45 /* TIC-DIOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52D3FDF61F1E290C00084B45 /* TIC-DIOS */ = {
+			isa = PBXGroup;
+			children = (
+				52D3FDF71F1E290C00084B45 /* AppDelegate.swift */,
+				52D3FDF91F1E290C00084B45 /* ViewController.swift */,
+				52D3FDFB1F1E290C00084B45 /* Main.storyboard */,
+				52D3FDFE1F1E290C00084B45 /* Assets.xcassets */,
+				52D3FE001F1E290C00084B45 /* LaunchScreen.storyboard */,
+				52D3FE031F1E290C00084B45 /* Info.plist */,
+			);
+			path = "TIC-DIOS";
+			sourceTree = "<group>";
+		};
+		52D3FE0B1F1E290C00084B45 /* TIC-DIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				52D3FE0C1F1E290C00084B45 /* TIC_DIOSTests.swift */,
+				52D3FE0E1F1E290C00084B45 /* Info.plist */,
+			);
+			path = "TIC-DIOSTests";
+			sourceTree = "<group>";
+		};
+		52D3FE161F1E290C00084B45 /* TIC-DIOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				52D3FE171F1E290C00084B45 /* TIC_DIOSUITests.swift */,
+				52D3FE191F1E290C00084B45 /* Info.plist */,
+			);
+			path = "TIC-DIOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52D3FDF31F1E290C00084B45 /* TIC-DIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52D3FE1C1F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOS" */;
+			buildPhases = (
+				52D3FDF01F1E290C00084B45 /* Sources */,
+				52D3FDF11F1E290C00084B45 /* Frameworks */,
+				52D3FDF21F1E290C00084B45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TIC-DIOS";
+			productName = "TIC-DIOS";
+			productReference = 52D3FDF41F1E290C00084B45 /* TIC-DIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52D3FE071F1E290C00084B45 /* TIC-DIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52D3FE1F1F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSTests" */;
+			buildPhases = (
+				52D3FE041F1E290C00084B45 /* Sources */,
+				52D3FE051F1E290C00084B45 /* Frameworks */,
+				52D3FE061F1E290C00084B45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52D3FE0A1F1E290C00084B45 /* PBXTargetDependency */,
+			);
+			name = "TIC-DIOSTests";
+			productName = "TIC-DIOSTests";
+			productReference = 52D3FE081F1E290C00084B45 /* TIC-DIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52D3FE121F1E290C00084B45 /* TIC-DIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52D3FE221F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSUITests" */;
+			buildPhases = (
+				52D3FE0F1F1E290C00084B45 /* Sources */,
+				52D3FE101F1E290C00084B45 /* Frameworks */,
+				52D3FE111F1E290C00084B45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52D3FE151F1E290C00084B45 /* PBXTargetDependency */,
+			);
+			name = "TIC-DIOSUITests";
+			productName = "TIC-DIOSUITests";
+			productReference = 52D3FE131F1E290C00084B45 /* TIC-DIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52D3FDEC1F1E290C00084B45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = etna;
+				TargetAttributes = {
+					52D3FDF31F1E290C00084B45 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					52D3FE071F1E290C00084B45 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 52D3FDF31F1E290C00084B45;
+					};
+					52D3FE121F1E290C00084B45 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 52D3FDF31F1E290C00084B45;
+					};
+				};
+			};
+			buildConfigurationList = 52D3FDEF1F1E290C00084B45 /* Build configuration list for PBXProject "TIC-DIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52D3FDEB1F1E290C00084B45;
+			productRefGroup = 52D3FDF51F1E290C00084B45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52D3FDF31F1E290C00084B45 /* TIC-DIOS */,
+				52D3FE071F1E290C00084B45 /* TIC-DIOSTests */,
+				52D3FE121F1E290C00084B45 /* TIC-DIOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52D3FDF21F1E290C00084B45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D3FE021F1E290C00084B45 /* LaunchScreen.storyboard in Resources */,
+				52D3FDFF1F1E290C00084B45 /* Assets.xcassets in Resources */,
+				52D3FDFD1F1E290C00084B45 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE061F1E290C00084B45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE111F1E290C00084B45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52D3FDF01F1E290C00084B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D3FDFA1F1E290C00084B45 /* ViewController.swift in Sources */,
+				52D3FDF81F1E290C00084B45 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE041F1E290C00084B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D3FE0D1F1E290C00084B45 /* TIC_DIOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52D3FE0F1F1E290C00084B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52D3FE181F1E290C00084B45 /* TIC_DIOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52D3FE0A1F1E290C00084B45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52D3FDF31F1E290C00084B45 /* TIC-DIOS */;
+			targetProxy = 52D3FE091F1E290C00084B45 /* PBXContainerItemProxy */;
+		};
+		52D3FE151F1E290C00084B45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52D3FDF31F1E290C00084B45 /* TIC-DIOS */;
+			targetProxy = 52D3FE141F1E290C00084B45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52D3FDFB1F1E290C00084B45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52D3FDFC1F1E290C00084B45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52D3FE001F1E290C00084B45 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52D3FE011F1E290C00084B45 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52D3FE1A1F1E290C00084B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52D3FE1B1F1E290C00084B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52D3FE1D1F1E290C00084B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TIC-DIOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		52D3FE1E1F1E290C00084B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TIC-DIOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		52D3FE201F1E290C00084B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "TIC-DIOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIC-DIOS.app/TIC-DIOS";
+			};
+			name = Debug;
+		};
+		52D3FE211F1E290C00084B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "TIC-DIOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIC-DIOS.app/TIC-DIOS";
+			};
+			name = Release;
+		};
+		52D3FE231F1E290C00084B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "TIC-DIOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "TIC-DIOS";
+			};
+			name = Debug;
+		};
+		52D3FE241F1E290C00084B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "TIC-DIOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "etna.TIC-DIOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "TIC-DIOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52D3FDEF1F1E290C00084B45 /* Build configuration list for PBXProject "TIC-DIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52D3FE1A1F1E290C00084B45 /* Debug */,
+				52D3FE1B1F1E290C00084B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52D3FE1C1F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52D3FE1D1F1E290C00084B45 /* Debug */,
+				52D3FE1E1F1E290C00084B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52D3FE1F1F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52D3FE201F1E290C00084B45 /* Debug */,
+				52D3FE211F1E290C00084B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52D3FE221F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52D3FE231F1E290C00084B45 /* Debug */,
+				52D3FE241F1E290C00084B45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52D3FDEC1F1E290C00084B45 /* Project object */;
+}
