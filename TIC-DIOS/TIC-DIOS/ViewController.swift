@@ -14,13 +14,21 @@ class ViewController: UIViewController {
     let ammo_image_name = "chaise"
     var ammo_number = 0
     var ammo_array: Array<UIImageView> = []
+    
+    var timer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.marzi.translatesAutoresizingMaskIntoConstraints = true
+        scheduledTimerWithTimeInterval()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.createAmmo), userInfo: nil, repeats: true)
     }
     
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -50,16 +58,25 @@ class ViewController: UIViewController {
     func createAmmo() {
         let ammo_image = UIImage(named: ammo_image_name)
         if (ammo_image != nil && ammo_image!.cgImage != nil) {
-            let imageView = UIImageView(image: ammo_image!)
+            let image_view = UIImageView(image: ammo_image!)
             let ammo_size = CGSize(width: ammo_image!.cgImage!.width / 10, height: ammo_image!.cgImage!.height / 10)
-            imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: ammo_size)
-            imageView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
-            imageView.tag = 1000 + ammo_number
+            image_view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: ammo_size)
+            image_view.tag = 1000 + ammo_number
             ammo_number += 1
-            ammo_array.append(imageView)
-            view.addSubview(imageView)
-            imageView.center = CGPoint(x: marzi.center.x, y: marzi.center.y)
-            print(ammo_array)
+            ammo_array.append(image_view)
+            view.addSubview(image_view)
+            image_view.center = CGPoint(x: marzi.center.x, y: marzi.center.y)
+            image_view.startRotating()
+            animateAmmo(image_view)
         }
+    }
+    
+    func animateAmmo(_ img: UIImageView) {
+        UIView.animate(withDuration: 2, animations: {
+            img.center.y = -100
+        }, completion: { (true) in
+            img.stopRotating()
+            self.ammo_array.removeFirst()
+        })
     }
 }

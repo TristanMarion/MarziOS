@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		527E0FC21F1F7E1B008EBCEB /* Rotation extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0FC11F1F7E1A008EBCEB /* Rotation extension.swift */; };
 		52D3FDF81F1E290C00084B45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FDF71F1E290C00084B45 /* AppDelegate.swift */; };
 		52D3FDFA1F1E290C00084B45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3FDF91F1E290C00084B45 /* ViewController.swift */; };
 		52D3FDFD1F1E290C00084B45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D3FDFB1F1E290C00084B45 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		527E0FC11F1F7E1A008EBCEB /* Rotation extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rotation extension.swift"; sourceTree = "<group>"; };
 		52D3FDF41F1E290C00084B45 /* TIC-DIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TIC-DIOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D3FDF71F1E290C00084B45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3FDF91F1E290C00084B45 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				52D3FDFE1F1E290C00084B45 /* Assets.xcassets */,
 				52D3FE001F1E290C00084B45 /* LaunchScreen.storyboard */,
 				52D3FE031F1E290C00084B45 /* Info.plist */,
+				527E0FC11F1F7E1A008EBCEB /* Rotation extension.swift */,
 			);
 			path = "TIC-DIOS";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D3FDFA1F1E290C00084B45 /* ViewController.swift in Sources */,
+				527E0FC21F1F7E1B008EBCEB /* Rotation extension.swift in Sources */,
 				52D3FDF81F1E290C00084B45 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +511,7 @@
 				52D3FE1E1F1E290C00084B45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52D3FE1F1F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +520,7 @@
 				52D3FE211F1E290C00084B45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52D3FE221F1E290C00084B45 /* Build configuration list for PBXNativeTarget "TIC-DIOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +529,7 @@
 				52D3FE241F1E290C00084B45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
