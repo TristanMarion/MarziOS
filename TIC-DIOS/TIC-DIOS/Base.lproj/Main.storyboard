@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad9_7" orientation="landscape">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,13 +19,13 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marzi" translatesAutoresizingMaskIntoConstraints="NO" id="Gf7-9J-Ugy">
-                                <rect key="frame" x="424.5" y="511.5" width="175" height="231.5"/>
+                                <rect key="frame" x="147.5" y="536.5" width="80" height="105.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="ESw-0Z-uT1">
+                                    <constraint firstAttribute="width" constant="80" id="ESw-0Z-uT1">
                                         <variation key="heightClass=regular-widthClass=regular" constant="175"/>
                                     </constraint>
                                     <constraint firstAttribute="width" secondItem="Gf7-9J-Ugy" secondAttribute="height" multiplier="40:53" id="irz-Jb-LNu"/>

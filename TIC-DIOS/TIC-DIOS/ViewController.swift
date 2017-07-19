@@ -10,15 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var marzi: UIImageView!
+    
+    let ammo_image_name = "chaise"
+    var ammo_number = 0
+    var ammo_array: Array<UIImageView> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -44,5 +46,20 @@ class ViewController: UIViewController {
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
         }
     }
+    
+    func createAmmo() {
+        let ammo_image = UIImage(named: ammo_image_name)
+        if (ammo_image != nil && ammo_image!.cgImage != nil) {
+            let imageView = UIImageView(image: ammo_image!)
+            let ammo_size = CGSize(width: ammo_image!.cgImage!.width / 10, height: ammo_image!.cgImage!.height / 10)
+            imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: ammo_size)
+            imageView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+            imageView.tag = 1000 + ammo_number
+            ammo_number += 1
+            ammo_array.append(imageView)
+            view.addSubview(imageView)
+            imageView.center = CGPoint(x: marzi.center.x, y: marzi.center.y)
+            print(ammo_array)
+        }
+    }
 }
-
