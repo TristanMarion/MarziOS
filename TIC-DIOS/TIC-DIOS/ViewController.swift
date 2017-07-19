@@ -27,6 +27,9 @@ class ViewController: UIViewController {
         
         // Without this line Marzi's position is reset at each new ammo
         self.marzi.translatesAutoresizingMaskIntoConstraints = true
+        
+        collisionTimer()
+        createEnnemy()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +42,10 @@ class ViewController: UIViewController {
     
     func ennemyGenerator() {
         timer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(self.createEnnemy), userInfo: nil, repeats: true)
+    }
+    
+    func collisionTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkCollisions), userInfo: nil, repeats: true)
     }
     
     // Managing Marzi's movements
@@ -64,6 +71,14 @@ class ViewController: UIViewController {
             
             marzi.center = CGPoint(x: pos_x, y: pos_y)
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
+        }
+    }
+    
+    func checkCollisions() {
+        ennemy_array.forEach { (ennemy) in
+            if (ennemy.layer.presentation()!.frame.intersects(marzi.frame)) {
+                ennemy.removeFromSuperview()
+            }
         }
     }
     
