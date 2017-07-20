@@ -22,6 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Ch2-Ry-nAl">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marzi" translatesAutoresizingMaskIntoConstraints="NO" id="Gf7-9J-Ugy">
                                 <rect key="frame" x="147.5" y="536.5" width="80" height="105.5"/>
                                 <constraints>
@@ -92,6 +96,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bg" width="640" height="1136"/>
         <image name="marzi" width="120" height="159"/>
     </resources>
 </document>

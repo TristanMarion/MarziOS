@@ -16,9 +16,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     let difficulties = ["Easy", "Hard", "Hardcore"]
     let difficulties_value: Array<Array<Double>> = [
-        [0.5, 7, 5],
-        [1, 5, 4],
-        [1.5, 3, 3]
+        [0.5, 5, 5],
+        [1, 4, 4],
+        [0.5, 1, 2]
     ]
     
     let ammo_image_name = "chaise"
@@ -82,9 +82,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         select_button.isHidden = true
         marzi.center = CGPoint(x: view.center.x, y: view.frame.height - 25 - marzi.frame.height / 2)
         marzi.isHidden = false
-        collisionTimer()
         ennemyGenerator()
         ammoGenerator()
+        checkCollisions()
     }
     
     func toggleUI() {
@@ -99,10 +99,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func ennemyGenerator() {
         ennemy_timer = Timer.scheduledTimer(timeInterval: TimeInterval(difficulty[1]), target: self, selector: #selector(self.createEnnemy), userInfo: nil, repeats: true)
-    }
-    
-    func collisionTimer() {
-        ennemy_timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkCollisions), userInfo: nil, repeats: true)
     }
     
     // Managing Marzi's movements
@@ -134,12 +130,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func checkCollisions() {
         var result = 0
         ennemy_array.forEach { (ennemy) in
-            if (ennemy.layer.presentation() != nil && ennemy.layer.presentation()!.frame.intersects(marzi.frame)) {
+            if (ennemy.layer.presentation() != nil &&  marzi.layer.presentation() != nil && ennemy.layer.presentation()!.frame.intersects(marzi.layer.presentation()!.frame)) {
                 ennemy.removeFromSuperview()
                 result = 1
             } else {
                 ammo_array.forEach({ (ammo) in
-                    if (ammo.layer.presentation() != nil && ammo.layer.presentation()!.frame.intersects(ennemy.layer.presentation()!.frame)) {
+                    if (ammo.layer.presentation() != nil && ennemy.layer.presentation() != nil && ammo.layer.presentation()!.frame.intersects(ennemy.layer.presentation()!.frame)) {
                         ennemy.removeFromSuperview()
                         updatePoints(1)
                     }
@@ -150,6 +146,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             endTimers()
             clearArrays()
             toggleUI()
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                self.checkCollisions()
+            })
         }
     }
     
@@ -181,7 +181,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let ammo_image = UIImage(named: ammo_image_name)
         if (ammo_image != nil && ammo_image!.cgImage != nil) {
             let image_view = UIImageView(image: ammo_image!)
-            let ammo_size = CGSize(width: ammo_image!.cgImage!.width / 10, height: ammo_image!.cgImage!.height / 10)
+            let ammo_size = CGSize(width: ammo_image!.cgImage!.width / 15, height: ammo_image!.cgImage!.height / 15)
             
             image_view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: ammo_size)
             image_view.tag = 1000 + ammo_id
@@ -217,7 +217,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let ennemy_size = CGSize(width: ennemy_image!.cgImage!.width / 3, height: ennemy_image!.cgImage!.height / 3)
             
             let min_x = CGFloat(ennemy_image!.cgImage!.width / 3) / 2
-            print(min_x)
             let max_x = view.frame.width - min_x
             let random_x = CGFloat(arc4random_uniform(UInt32(max_x - min_x))) + min_x
             
@@ -225,7 +224,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             image_view.tag = 10000 + ennemy_id
             ennemy_id += 1
             ennemy_array.append(image_view)
-            image_view.center = CGPoint(x: random_x, y: -100)
+            image_view.center = CGPoint(x: random_x, y: -30)
             view.addSubview(image_view)
             animateEnnemy(image_view)
         }
@@ -234,7 +233,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func animateEnnemy(_ img: UIImageView) {
         UIView.animate(withDuration: TimeInterval(difficulty[2]), delay: 0, options: UIViewAnimationOptions.curveLinear,
             animations: {
-            img.center.y = self.view.frame.height + 200
+            img.center.y = self.view.frame.height + img.frame.height
         }, completion: { (true) in
             img.removeFromSuperview()
             if (self.ennemy_array.count > 0) {
