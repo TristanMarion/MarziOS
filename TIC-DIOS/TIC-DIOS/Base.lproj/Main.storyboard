@@ -31,19 +31,54 @@
                                     <constraint firstAttribute="width" secondItem="Gf7-9J-Ugy" secondAttribute="height" multiplier="40:53" id="irz-Jb-LNu"/>
                                 </constraints>
                             </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PPP-nY-07Q">
+                                <rect key="frame" x="27" y="225" width="320" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8bC-Xf-vdC" id="HWf-Yq-RBk"/>
+                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="Z4f-ot-90p"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlT-r9-QhR">
+                                <rect key="frame" x="112" y="449" width="150" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Pc8-ha-gsh"/>
+                                </constraints>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectDifficulty:" destination="BYZ-38-t0r" eventType="touchUpInside" id="88N-t5-m0e"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJE-aU-WoQ">
+                                <rect key="frame" x="10" y="636" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="LJE-aU-WoQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="7Ek-Ql-Ssk"/>
+                            <constraint firstItem="PPP-nY-07Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AI4-2n-n7L"/>
+                            <constraint firstItem="PPP-nY-07Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PFN-qh-HJB"/>
+                            <constraint firstItem="QlT-r9-QhR" firstAttribute="top" secondItem="PPP-nY-07Q" secondAttribute="bottom" constant="8" id="X3x-gd-bSK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LJE-aU-WoQ" secondAttribute="bottom" constant="10" id="ext-sH-e6p"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Gf7-9J-Ugy" secondAttribute="bottom" constant="25" id="fD4-Mu-abK"/>
                             <constraint firstItem="Gf7-9J-Ugy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ja1-3V-TuA"/>
+                            <constraint firstItem="QlT-r9-QhR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uXo-Kb-W74"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="SFI-D1-PLF" appends="YES" id="p63-i8-BbF"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="difficulty_picker" destination="PPP-nY-07Q" id="7WG-zF-V51"/>
                         <outlet property="marzi" destination="Gf7-9J-Ugy" id="dS8-bO-Z4u"/>
+                        <outlet property="points_label" destination="LJE-aU-WoQ" id="LE9-Fw-tlZ"/>
+                        <outlet property="select_button" destination="QlT-r9-QhR" id="Ken-iS-28d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

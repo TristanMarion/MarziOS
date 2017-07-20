@@ -8,8 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var marzi: UIImageView!
+    @IBOutlet weak var difficulty_picker: UIPickerView!
+    @IBOutlet weak var select_button: UIButton!
+    @IBOutlet weak var points_label: UILabel!
+    
+    let difficulties = ["Easy", "Hard", "Hardcore"]
+    let difficulties_value: Array<Array<Double>> = [
+        [0.5, 7, 5],
+        [1, 5, 4],
+        [1.5, 3, 3]
+    ]
     
     let ammo_image_name = "chaise"
     let ennemy_image_name = "balcon.png"
@@ -20,32 +30,79 @@ class ViewController: UIViewController {
     var ammo_array: Array<UIImageView> = []
     var ennemy_array: Array<UIImageView> = []
     
-    var timer = Timer()
+    var difficulty: Array<Double> = []
+    
+    var collision_timer = Timer()
+    var ammo_timer = Timer()
+    var ennemy_timer = Timer()
+    
+    var points = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.difficulty_picker.dataSource = self
+        self.difficulty_picker.delegate = self
+        
+        difficulty = self.difficulties_value[0]
         
         // Without this line Marzi's position is reset at each new ammo
         self.marzi.translatesAutoresizingMaskIntoConstraints = true
-        
-        collisionTimer()
-        createEnnemy()
+        marzi.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return difficulties.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return difficulties[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        difficulty = difficulties_value[row]
+    }
+    
+    
+    @IBAction func selectDifficulty(_ sender: UIButton) {
+        play()
+    }
+    
+    func play() {
+        updatePoints(-points)
+        toggleUI()
+        difficulty_picker.isHidden = true
+        select_button.isHidden = true
+        marzi.center = CGPoint(x: view.center.x, y: view.frame.height - 25 - marzi.frame.height / 2)
+        marzi.isHidden = false
+        collisionTimer()
+        ennemyGenerator()
+        ammoGenerator()
+    }
+    
+    func toggleUI() {
+        marzi.isHidden = !marzi.isHidden
+        difficulty_picker.isHidden = !difficulty_picker.isHidden
+        select_button.isHidden = !select_button.isHidden
+    }
+    
     func ammoGenerator() {
-        timer = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(self.createAmmo), userInfo: nil, repeats: true)
+        ammo_timer = Timer.scheduledTimer(timeInterval: difficulty[0], target: self, selector: #selector(self.createAmmo), userInfo: nil, repeats: true)
     }
     
     func ennemyGenerator() {
-        timer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(self.createEnnemy), userInfo: nil, repeats: true)
+        ennemy_timer = Timer.scheduledTimer(timeInterval: TimeInterval(difficulty[1]), target: self, selector: #selector(self.createEnnemy), userInfo: nil, repeats: true)
     }
     
     func collisionTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkCollisions), userInfo: nil, repeats: true)
+        ennemy_timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.checkCollisions), userInfo: nil, repeats: true)
     }
     
     // Managing Marzi's movements
@@ -75,11 +132,49 @@ class ViewController: UIViewController {
     }
     
     func checkCollisions() {
+        var result = 0
         ennemy_array.forEach { (ennemy) in
-            if (ennemy.layer.presentation()!.frame.intersects(marzi.frame)) {
+            if (ennemy.layer.presentation() != nil && ennemy.layer.presentation()!.frame.intersects(marzi.frame)) {
                 ennemy.removeFromSuperview()
+                result = 1
+            } else {
+                ammo_array.forEach({ (ammo) in
+                    if (ammo.layer.presentation() != nil && ammo.layer.presentation()!.frame.intersects(ennemy.layer.presentation()!.frame)) {
+                        ennemy.removeFromSuperview()
+                        updatePoints(1)
+                    }
+                })
             }
         }
+        if (result != 0) {
+            endTimers()
+            clearArrays()
+            toggleUI()
+        }
+    }
+    
+    func endTimers() {
+        collision_timer.invalidate()
+        ammo_timer.invalidate()
+        ennemy_timer.invalidate()
+    }
+    
+    func clearArrays() {
+        ennemy_array.forEach({ (ennemy) in
+            ennemy.removeFromSuperview()
+            ennemy.layer.removeAllAnimations()
+        })
+        ammo_array.forEach({ (ammo) in
+            ammo.removeFromSuperview()
+            ammo.layer.removeAllAnimations()
+        })
+        ennemy_array.removeAll()
+        ammo_array.removeAll()
+    }
+
+    func updatePoints(_ added_points: Int) {
+        points += added_points
+        points_label.text = String(points)
     }
     
     func createAmmo() {
@@ -109,7 +204,9 @@ class ViewController: UIViewController {
         }, completion: { (true) in
             img.stopRotating()
             img.removeFromSuperview()
-            self.ammo_array.removeFirst()
+            if (self.ammo_array.count > 0) {
+                self.ammo_array.removeFirst()
+            }
         })
     }
     
@@ -135,12 +232,14 @@ class ViewController: UIViewController {
     }
     
     func animateEnnemy(_ img: UIImageView) {
-        UIView.animate(withDuration: 5, delay: 0, options: UIViewAnimationOptions.curveLinear,
+        UIView.animate(withDuration: TimeInterval(difficulty[2]), delay: 0, options: UIViewAnimationOptions.curveLinear,
             animations: {
             img.center.y = self.view.frame.height + 200
         }, completion: { (true) in
             img.removeFromSuperview()
-            self.ennemy_array.removeFirst()
+            if (self.ennemy_array.count > 0) {
+                self.ennemy_array.removeFirst()
+            }
         })
     }
 }
