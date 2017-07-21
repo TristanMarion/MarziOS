@@ -132,7 +132,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let marzi_semi_width = marzi.frame.width / 2
             let marzi_semi_height = marzi.frame.height / 2
             
-            // Marzi is faster than your finger
+            // Marzi's speed is modified by the bonus
             var pos_x = marzi.center.x + translation.x * move_coeff
             var pos_y = marzi.center.y + translation.y * move_coeff
             
@@ -192,6 +192,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         collision_timer.invalidate()
         ammo_timer.invalidate()
         ennemy_timer.invalidate()
+        bonus_timer.invalidate()
     }
     
     func clearArrays() {
@@ -203,8 +204,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             ammo.removeFromSuperview()
             ammo.layer.removeAllAnimations()
         })
+        bonus_array.forEach({ (bonus) in
+            bonus.0.removeFromSuperview()
+            bonus.0.layer.removeAllAnimations()
+        })
         ennemy_array.removeAll()
         ammo_array.removeAll()
+        bonus_array.removeAll()
     }
 
     func updatePoints(_ added_points: Int) {
