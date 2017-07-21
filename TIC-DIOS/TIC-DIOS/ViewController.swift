@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var marzi: UIImageView!
     @IBOutlet weak var difficulty_picker: UIPickerView!
     @IBOutlet weak var select_button: UIButton!
     @IBOutlet weak var points_label: UILabel!
+    
+    var audio_player: AVAudioPlayer?
+    var throw_player: AVAudioPlayer?
+    var explosion_player: AVAudioPlayer?
+    let music_game = NSDataAsset(name: "music_game")
+    let music_menu = NSDataAsset(name: "music_menu")
+    let sound_throw = NSDataAsset(name: "sound_throw")
+    let sound_explosion = NSDataAsset(name: "sound_explosion")
     
     let difficulties = ["Easy", "Hard", "Hardcore"]
     let difficulties_value: Array<Array<Double>> = [
@@ -23,18 +32,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     let ammo_image_name = "chaise"
     let ennemy_image_name = "balcon.png"
+    let bonus_image_array = ["bonus_speed", "bonus_slow", "bonus_reverse"]
+    let bonus_values: Array<Double> = [2, 0.5, -1]
+    let bonus_duration: Array<Double> = [10, 5, 5]
     
     var ammo_id = 0
     var ennemy_id = 0
+    var bonus_id = 0
     
     var ammo_array: Array<UIImageView> = []
     var ennemy_array: Array<UIImageView> = []
+    var bonus_array: Array<(UIImageView, Double, Double)> = []
     
     var difficulty: Array<Double> = []
+    var move_coeff = CGFloat(1.0)
     
     var collision_timer = Timer()
     var ammo_timer = Timer()
     var ennemy_timer = Timer()
+    var bonus_timer = Timer()
     
     var points = 0
 
@@ -48,6 +64,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // Without this line Marzi's position is reset at each new ammo
         self.marzi.translatesAutoresizingMaskIntoConstraints = true
         marzi.isHidden = true
+        
+        playMenuMusic()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +88,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         difficulty = difficulties_value[row]
     }
     
-    
     @IBAction func selectDifficulty(_ sender: UIButton) {
         play()
     }
@@ -84,7 +101,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         marzi.isHidden = false
         ennemyGenerator()
         ammoGenerator()
+        bonusGenerator()
         checkCollisions()
+        playGameMusic()
     }
     
     func toggleUI() {
@@ -101,6 +120,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         ennemy_timer = Timer.scheduledTimer(timeInterval: TimeInterval(difficulty[1]), target: self, selector: #selector(self.createEnnemy), userInfo: nil, repeats: true)
     }
     
+    func bonusGenerator() {
+        bonus_timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.createBonus), userInfo: nil, repeats: true)
+    }
+    
     // Managing Marzi's movements
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
@@ -110,8 +133,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let marzi_semi_height = marzi.frame.height / 2
             
             // Marzi is faster than your finger
-            var pos_x = marzi.center.x + translation.x * 1
-            var pos_y = marzi.center.y + translation.y * 1
+            var pos_x = marzi.center.x + translation.x * move_coeff
+            var pos_y = marzi.center.y + translation.y * move_coeff
             
             // if Marzi is not at a good x value
             pos_x = pos_x < marzi_semi_width ? marzi_semi_width : pos_x
@@ -137,8 +160,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 ammo_array.forEach({ (ammo) in
                     if (ammo.layer.presentation() != nil && ennemy.layer.presentation() != nil && ammo.layer.presentation()!.frame.intersects(ennemy.layer.presentation()!.frame)) {
                         ennemy.removeFromSuperview()
+                        playExplosionSound()
                         updatePoints(1)
                     }
+                })
+            }
+        }
+        bonus_array.forEach { (bonus) in
+            if (bonus.0.layer.presentation() != nil && marzi.layer.presentation() != nil && bonus.0.layer.presentation()!.frame.intersects(marzi.layer.presentation()!.frame)) {
+                bonus.0.removeFromSuperview()
+                bonus_array.removeFirst()
+                move_coeff = CGFloat(bonus.1)
+                DispatchQueue.main.asyncAfter(deadline: .now() + bonus.2, execute: {
+                    self.move_coeff = 1
                 })
             }
         }
@@ -146,6 +180,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             endTimers()
             clearArrays()
             toggleUI()
+            playMenuMusic()
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
                 self.checkCollisions()
@@ -193,6 +228,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             image_view.startRotating()
             
             view.addSubview(image_view)
+            playThrowSound()
             animateAmmo(image_view)
         }
     }
@@ -240,5 +276,82 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 self.ennemy_array.removeFirst()
             }
         })
+    }
+    
+    func createBonus() {
+        let rand = arc4random_uniform(3)
+        let bonus_image = UIImage(named: bonus_image_array[Int(rand)])
+        if (bonus_image != nil && bonus_image!.cgImage != nil) {
+            let image_view = UIImageView(image: bonus_image!)
+            let bonus_size = CGSize(width: bonus_image!.cgImage!.width, height: bonus_image!.cgImage!.height)
+            
+            let min_x = CGFloat(bonus_image!.cgImage!.width / 3) / 2
+            let max_x = view.frame.width - min_x
+            let random_x = CGFloat(arc4random_uniform(UInt32(max_x - min_x))) + min_x
+            
+            image_view.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: bonus_size)
+            image_view.tag = 100000 + bonus_id
+            bonus_id += 1
+            bonus_array.append((image_view, bonus_values[Int(rand)], bonus_duration[Int(rand)]))
+            image_view.center = CGPoint(x: random_x, y: -image_view.frame.height)
+            view.addSubview(image_view)
+            animateBonus(image_view)
+        }
+    }
+    
+    func animateBonus(_ img: UIImageView) {
+        UIView.animate(withDuration: TimeInterval(10), delay: 0, options: UIViewAnimationOptions.curveLinear,
+                       animations: {
+                        img.center.y = self.view.frame.height + img.frame.height
+        }, completion: { (true) in
+            img.removeFromSuperview()
+            if (self.ennemy_array.count > 0) {
+                self.ennemy_array.removeFirst()
+            }
+        })
+    }
+    
+    func playMenuMusic() {
+        if music_menu != nil {
+            do {
+                audio_player = try AVAudioPlayer(data: music_menu!.data, fileTypeHint: "aiff")
+                audio_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playGameMusic() {
+        if music_game != nil {
+            do {
+                audio_player = try AVAudioPlayer(data: music_game!.data, fileTypeHint: "aiff")
+                audio_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playThrowSound() {
+        if sound_throw != nil {
+            do {
+                throw_player = try AVAudioPlayer(data: sound_throw!.data, fileTypeHint: "aiff")
+                throw_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playExplosionSound() {
+        if sound_explosion != nil {
+            do {
+                explosion_player = try AVAudioPlayer(data: sound_explosion!.data, fileTypeHint: "aiff")
+                explosion_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
