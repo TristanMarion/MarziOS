@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var marzi: UIImageView!
     @IBOutlet weak var difficulty_picker: UIPickerView!
     @IBOutlet weak var select_button: UIButton!
     @IBOutlet weak var points_label: UILabel!
+    
+    var audio_player: AVAudioPlayer?
+    var throw_player: AVAudioPlayer?
+    var explosion_player: AVAudioPlayer?
+    let music_game = NSDataAsset(name: "music_game")
+    let music_menu = NSDataAsset(name: "music_menu")
+    let sound_throw = NSDataAsset(name: "sound_throw")
+    let sound_explosion = NSDataAsset(name: "sound_explosion")
     
     let difficulties = ["Easy", "Hard", "Hardcore"]
     let difficulties_value: Array<Array<Double>> = [
@@ -48,6 +57,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // Without this line Marzi's position is reset at each new ammo
         self.marzi.translatesAutoresizingMaskIntoConstraints = true
         marzi.isHidden = true
+        
+        playMenuMusic()
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +96,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         ennemyGenerator()
         ammoGenerator()
         checkCollisions()
+        playGameMusic()
     }
     
     func toggleUI() {
@@ -137,6 +149,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 ammo_array.forEach({ (ammo) in
                     if (ammo.layer.presentation() != nil && ennemy.layer.presentation() != nil && ammo.layer.presentation()!.frame.intersects(ennemy.layer.presentation()!.frame)) {
                         ennemy.removeFromSuperview()
+                        playExplosionSound()
                         updatePoints(1)
                     }
                 })
@@ -146,6 +159,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             endTimers()
             clearArrays()
             toggleUI()
+            playMenuMusic()
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
                 self.checkCollisions()
@@ -193,6 +207,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             image_view.startRotating()
             
             view.addSubview(image_view)
+            playThrowSound()
             animateAmmo(image_view)
         }
     }
@@ -240,5 +255,49 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 self.ennemy_array.removeFirst()
             }
         })
+    }
+    
+    func playMenuMusic() {
+        if music_menu != nil {
+            do {
+                audio_player = try AVAudioPlayer(data: music_menu!.data, fileTypeHint: "aiff")
+                audio_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playGameMusic() {
+        if music_game != nil {
+            do {
+                audio_player = try AVAudioPlayer(data: music_game!.data, fileTypeHint: "aiff")
+                audio_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playThrowSound() {
+        if sound_throw != nil {
+            do {
+                throw_player = try AVAudioPlayer(data: sound_throw!.data, fileTypeHint: "aiff")
+                throw_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func playExplosionSound() {
+        if sound_explosion != nil {
+            do {
+                explosion_player = try AVAudioPlayer(data: sound_explosion!.data, fileTypeHint: "aiff")
+                explosion_player?.play()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
